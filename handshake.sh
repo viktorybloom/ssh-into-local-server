@@ -10,7 +10,7 @@ echo  # Move to a new line after password input
 SSH_DIR="$HOME/.ssh"
 
 # Step 1: Create SSH Key Pair in the specified directory
-ssh-keygen -t rsa -f "$SSH_DIR/$USERNAME@$HOSTNAME"
+ssh-keygen -t rsa -f "$SSH_DIR/$USERNAME@$HOSTNAME" -c $USERNAME@$HOSTNAME
 
 # Step 2: Copy Public Key to server
 sshpass -p "$PASSWORD" ssh-copy-id "$USERNAME@$HOSTNAME"
@@ -33,7 +33,7 @@ if [ "$choice" == "y" ]; then
     ssh_config_snippet="PasswordAuthentication no"
     
     # Transfer the configuration snippet to the server
-    echo -e "$ssh_config_snippet" | ssh "$USERNAME@$HOSTNAME" "sudo tee /etc/ssh/ssh_config.d/$USERNAME-local.conf > /dev/null"
+    echo -e "$ssh_config_snippet" | ssh "$USERNAME@$HOSTNAME" "sudo tee /etc/ssh/ssh_config.d/$USERNAME@$HOSTNAME-local.conf > /dev/null"
     
     # Restart the SSH service
     ssh "$USERNAME@$HOSTNAME" "sudo systemctl restart ssh"
