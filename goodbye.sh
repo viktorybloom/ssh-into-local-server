@@ -12,8 +12,8 @@ ssh "$USERNAME@$HOSTNAME" "sudo sed -i '/$USERNAME@$HOSTNAME/d' /etc/ssh/ssh_con
 echo "SSH handshake removed from /etc/ssh/ssh_$USERNAME@$HOSTNAME on the server."
 
 # Step 2: Remove config from ~/.ssh/ on local machine
-echo "Removing SSH $USERNAME setup from .ssh config file"
-rm ~/.ssh/conifg
+echo "Removing SSH $USERNAME setup from local .ssh directory" 
+rm ~/.ssh/$USERNAME@$HOSTNAME_conifg
 echo "Removed SSH $USERNAME from config"
 
 # Step 3: Remove authorized keys for the user
