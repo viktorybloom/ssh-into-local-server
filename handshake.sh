@@ -10,7 +10,7 @@ echo  # Move to a new line after password input
 SSH_DIR="$HOME/.ssh"
 
 # Step 1: Create SSH Key Pair in the specified directory
-ssh-keygen -t rsa -f "$SSH_DIR/$USERNAME@$HOSTNAME" -c $USERNAME@$HOSTNAME
+ssh-keygen -t rsa -f "$SSH_DIR/$USERNAME@$HOSTNAME" -C "$USERNAME@$HOSTNAME" -N ""
 
 # Step 2: Copy Public Key to server
 sshpass -p "$PASSWORD" ssh-copy-id "$USERNAME@$HOSTNAME"
