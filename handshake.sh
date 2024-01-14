@@ -25,7 +25,7 @@ echo -e "\nNow you can use 'ssh $USERNAME' to connect to your server."
 read -p "Do you want to disable password authentication on the server for connections from this machine? (y/n): " choice
 if [ "$choice" == "y" ]; then
     echo "Disabling password authentication for connections from this machine..."
-    ssh "$USERNAME@$HOSTNAME" "echo -e '\n# Disable password authentication for local machine\nMatch Address $(hostname -I | awk '{print $1}')\n  PasswordAuthentication no' | sudo tee -a /etc/ssh/sshd_config"
+    ssh "$USERNAME@$HOSTNAME" "echo -e '\n# Disable password authentication for local machine\nMatch Address $(hostname -I | awk '{print $1}')\n  PasswordAuthentication no' | sudo tee -a /etc/ssh/ssh_$USERNAME@$HOSTNAME"
     ssh "$USERNAME@$HOSTNAME" "sudo systemctl restart ssh"
     echo "Password authentication disabled for connections from this machine on the server."
 fi
