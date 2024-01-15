@@ -16,7 +16,7 @@ ssh-keygen -t rsa -f "$SSH_DIR/$USERNAME@$HOSTNAME" -C "$USERNAME@$HOSTNAME" -N 
 sshpass -p "$PASSWORD" ssh-copy-id "$USERNAME@$HOSTNAME"
 
 # Step 3: SSH Configuration
-echo -e "Host myserver\n  HostName $HOSTNAME\n  User $USERNAME\n  IdentityFile $SSH_DIR/$USERNAME@$HOSTNAME" >> ~/.ssh/config
+echo -e "Host $USERNAME\n  HostName $HOSTNAME\n  User $USERNAME\n  IdentityFile $SSH_DIR/'$USERNAME@$HOSTNAME'" >> ~/.ssh/config
 
 # Step 4: SSH Without Specifying IP or Username
 echo -e "\nNow you can use 'ssh $USERNAME' to connect to your server."
